@@ -1,13 +1,14 @@
+import Link from "next/link";
+
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between">
-			<div className="p-16">top btn</div>
-			<div className="flex md:w-full justify-between">
-				<div className="p-8 md:p-16">left btn</div>
-				<div className="p-8 md:p-16">center text</div>
-				<div className="p-8 md:p-16">right btn</div>
-			</div>
-			<div className="p-16">bot btn</div>
+		<main className="flex min-h-screen flex items-center justify-center">
+			<Link
+				href="/climateStory"
+				className="bg-blue-500 hover:bg-blue-800 text-white font-bold text-lg py-8 px-4 rounded"
+			>
+				Start Climate Story
+			</Link>
 		</main>
 	);
 }
