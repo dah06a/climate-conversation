@@ -36,8 +36,8 @@ export default function ClimateStory() {
 
 	return (
 		<main className="flex flex-col min-h-screen items-center">
-			<Suspense key={currStage?.id} fallback={<StoryStageSkeleton />}>
-				<div className="flex-1 flex flex-col items-center justify-center w-full p-4 md:p-8 lg:p-16 bg">
+			<div className="flex-1 flex flex-col items-center justify-center w-full p-4 md:p-8 lg:p-16 bg">
+				<Suspense key={currStage?.id} fallback={<StoryStageSkeleton />}>
 					{currStage?.mainText}
 					{currStage?.id !== "end" && (
 						<Image
@@ -48,11 +48,13 @@ export default function ClimateStory() {
 							className="pt-8"
 						/>
 					)}
-				</div>
-				<div className="flex-2 flex items-center justify-center w-full">
+				</Suspense>
+			</div>
+			<div className="flex-2 flex items-center justify-center w-full">
+				<Suspense key={currStage?.id} fallback={<StoryStageSkeleton />}>
 					<ul className="w-full">{options}</ul>
-				</div>
-			</Suspense>
+				</Suspense>
+			</div>
 		</main>
 	);
 }
