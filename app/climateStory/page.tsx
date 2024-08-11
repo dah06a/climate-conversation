@@ -23,12 +23,14 @@ export default function ClimateStory() {
 	const currStage = storyStages.find((stage) => stage.id === stageParams);
 	const options = currStage?.options.map((stage) => (
 		<li key={stage.optId} className="mx-auto w-4/5 md:w-2/3 lg:w-1/2">
-			<button
-				className="w-full my-2 p-2 rounded bg-blue-500"
-				onClick={() => handleSelectOption(stage.to)}
-			>
-				{stage.text}
-			</button>
+			<Suspense key={currStage?.id} fallback={<StoryStageSkeleton />}>
+				<button
+					className="w-full my-2 p-2 rounded bg-blue-500"
+					onClick={() => handleSelectOption(stage.to)}
+				>
+					{stage.text}
+				</button>
+			</Suspense>
 		</li>
 	));
 
