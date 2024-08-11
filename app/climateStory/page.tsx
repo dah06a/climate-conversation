@@ -3,6 +3,8 @@
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { storyStages } from "../lib/storyStages";
 import Image from "next/image";
+import { Suspense } from "react";
+import { StoryStageSkeleton } from "../ui/climateStory/skeletons";
 import climateChangeImg from "@/public/climate-change-example.svg";
 
 export default function ClimateStory() {
@@ -32,21 +34,23 @@ export default function ClimateStory() {
 
 	return (
 		<main className="flex flex-col min-h-screen items-center">
-			<div className="flex-1 flex flex-col items-center justify-center w-full p-4 md:p-8 lg:p-16 bg">
-				{currStage?.mainText}
-				{currStage?.id !== "end" && (
-					<Image
-						src={climateChangeImg}
-						alt="test climate change image"
-						height={300}
-						width={300}
-						className="pt-8"
-					/>
-				)}
-			</div>
-			<div className="flex-2 flex items-center justify-center w-full">
-				<ul className="w-full">{options}</ul>
-			</div>
+			<Suspense key={currStage?.id} fallback={<StoryStageSkeleton />}>
+				<div className="flex-1 flex flex-col items-center justify-center w-full p-4 md:p-8 lg:p-16 bg">
+					{currStage?.mainText}
+					{currStage?.id !== "end" && (
+						<Image
+							src={climateChangeImg}
+							alt="test climate change image"
+							height={300}
+							width={300}
+							className="pt-8"
+						/>
+					)}
+				</div>
+				<div className="flex-2 flex items-center justify-center w-full">
+					<ul className="w-full">{options}</ul>
+				</div>
+			</Suspense>
 		</main>
 	);
 }
