@@ -9,7 +9,8 @@ type stageId =
   'test6' |
   'test7' |
   'test8' |
-  'end';
+  'end' |
+  'error';
 
 type storyOpt = {
   optId: number;
@@ -17,7 +18,7 @@ type storyOpt = {
   to: stageId;
 }
 
-type storyStage = {
+export type storyStage = {
   id: stageId;
   mainText: string;
   options: storyOpt[];
